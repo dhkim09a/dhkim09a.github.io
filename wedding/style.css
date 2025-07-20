@@ -122,3 +122,45 @@ footer {
         transform: rotate(405deg); /* 45deg initial + 360deg spin */
     }
 }
+
+/* FAB and Particle Animation */
+#particle-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.particle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    will-change: transform;
+}
+
+.fab {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background-color: #d5a9a9;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 1001;
+    user-select: none;
+    transition: transform 0.2s;
+}
+
+.fab:active {
+    transform: scale(0.9);
+}
+

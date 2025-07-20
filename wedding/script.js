@@ -62,5 +62,97 @@ document.addEventListener('DOMContentLoaded', () => {
         petalContainer.appendChild(petal);
     }
 
-    // setInterval(createPetal, 3000);
+    // setInterval(createPetal, 300);
+
+    /* FAB and Particle Animation */
+    const fab = document.getElementById('fab');
+    const particleContainer = document.createElement('div');
+    particleContainer.id = 'particle-container';
+    document.body.appendChild(particleContainer);
+
+    const setParticleContainerHeight = () => {
+        particleContainer.style.height = `${document.body.scrollHeight}px`;
+    };
+    setParticleContainerHeight();
+    window.addEventListener('resize', setParticleContainerHeight);
+
+    const particleColors = ['#ffb7c5', '#d5a9a9', '#fff', '#fdfdfd'];
+    const piledParticles = [];
+    const maxPiledParticles = 200;
+    const activeParticles = [];
+
+    fab.addEventListener('click', () => {
+        const fabRect = fab.getBoundingClientRect();
+        for (let i = 0; i < 50; i++) {
+            createParticle(fabRect);
+        }
+        if (activeParticles.length > 0 && !animationRunning) {
+            runAnimation();
+        }
+    });
+
+    function createParticle(fabRect) {
+        const element = document.createElement('div');
+        element.classList.add('particle');
+        particleContainer.appendChild(element);
+
+        const size = Math.random() * 5 + 5;
+        element.style.width = `${size}px`;
+        element.style.height = `${size}px`;
+        element.style.backgroundColor = particleColors[Math.floor(Math.random() * particleColors.length)];
+
+        const x = fabRect.left + window.scrollX + fabRect.width / 2;
+        const y = fabRect.top + window.scrollY + fabRect.height / 2;
+
+        const screenCenterX = window.innerWidth / 2;
+        const screenCenterY = window.innerHeight / 2;
+        const angleToCenter = Math.atan2(screenCenterY - (fabRect.top + fabRect.height / 2), screenCenterX - (fabRect.left + fabRect.width / 2));
+        
+        const spread = Math.PI / 4;
+        const angle = angleToCenter + (Math.random() - 0) * spread;
+
+        const speed = Math.random() * 15 + 8;
+        const vx = Math.cos(angle) * speed;
+        const vy = Math.sin(angle) * speed;
+        const gravity = 0.4;
+
+        const pileHeight = 50;
+        const randomYOffset = Math.random() * pileHeight;
+        const finalY = document.body.scrollHeight - randomYOffset;
+
+        activeParticles.push({ element, x, y, vx, vy, gravity, finalY });
+    }
+
+    let animationRunning = false;
+    function runAnimation() {
+        animationRunning = true;
+        
+        for (let i = activeParticles.length - 1; i >= 0; i--) {
+            const p = activeParticles[i];
+
+            p.vy += p.gravity;
+            p.x += p.vx;
+            p.y += p.vy;
+
+            if (p.y >= p.finalY) {
+                p.element.style.transform = `translate3d(${p.x}px, ${p.finalY}px, 0)`;
+                piledParticles.push(p.element);
+                if (piledParticles.length > maxPiledParticles) {
+                    const oldestParticle = piledParticles.shift();
+                    if (oldestParticle) {
+                        oldestParticle.remove();
+                    }
+                }
+                activeParticles.splice(i, 1);
+            } else {
+                p.element.style.transform = `translate3d(${p.x}px, ${p.y}px, 0)`;
+            }
+        }
+
+        if (activeParticles.length > 0) {
+            requestAnimationFrame(runAnimation);
+        } else {
+            animationRunning = false;
+        }
+    }
 });
