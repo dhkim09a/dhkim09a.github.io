@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const angleToCenter = Math.atan2(screenCenterY - (fabRect.top + fabRect.height / 2), screenCenterX - (fabRect.left + fabRect.width / 2));
         
         const spread = Math.PI / 4;
-        const angle = angleToCenter + (Math.random() - 0) * spread;
+        const angle = angleToCenter + (Math.random() - 0.3) * spread;
 
         const speed = Math.random() * 15 + 8;
         const vx = Math.cos(angle) * speed;
@@ -120,12 +120,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const randomYOffset = Math.random() * pileHeight;
         const finalY = document.body.scrollHeight - randomYOffset;
 
-        activeParticles.push({ element, x, y, vx, vy, gravity, finalY });
+        activeParticles.push({ element, x, y, vx, vy, gravity, finalY, size });
     }
 
     let animationRunning = false;
     function runAnimation() {
         animationRunning = true;
+        const screenWidth = document.documentElement.clientWidth;
         
         for (let i = activeParticles.length - 1; i >= 0; i--) {
             const p = activeParticles[i];
@@ -134,7 +135,12 @@ document.addEventListener('DOMContentLoaded', () => {
             p.x += p.vx;
             p.y += p.vy;
 
-            if (p.y >= p.finalY) {
+            if (p.x < -p.size || p.x > screenWidth) {
+                // Particle is out of horizontal bounds, remove it.
+                p.element.remove();
+                activeParticles.splice(i, 1);
+            } else if (p.y >= p.finalY) {
+                // Particle has landed in the pile.
                 p.element.style.transform = `translate3d(${p.x}px, ${p.finalY}px, 0)`;
                 piledParticles.push(p.element);
                 if (piledParticles.length > maxPiledParticles) {
@@ -145,6 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 activeParticles.splice(i, 1);
             } else {
+                // Particle is still in flight.
                 p.element.style.transform = `translate3d(${p.x}px, ${p.y}px, 0)`;
             }
         }
