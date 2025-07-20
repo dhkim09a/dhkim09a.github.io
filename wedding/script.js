@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setParticleContainerHeight();
     window.addEventListener('resize', setParticleContainerHeight);
 
-    const particleColors = ['#ffb7c5', '#d5a9a9', '#fff', '#fdfdfd'];
+    const particleColors = ['#ffb7c5', '#ffc2d1', '#fde2e4', '#ffffff'];
     const piledParticles = [];
     const maxPiledParticles = 200;
     const activeParticles = [];
@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
         element.classList.add('particle');
         particleContainer.appendChild(element);
 
-        const size = Math.random() * 5 + 5;
+        const size = Math.random() * 5 + 8; // Petals are a bit larger
         element.style.width = `${size}px`;
         element.style.height = `${size}px`;
         element.style.backgroundColor = particleColors[Math.floor(Math.random() * particleColors.length)];
@@ -108,19 +108,22 @@ document.addEventListener('DOMContentLoaded', () => {
         const screenCenterY = window.innerHeight / 2;
         const angleToCenter = Math.atan2(screenCenterY - (fabRect.top + fabRect.height / 2), screenCenterX - (fabRect.left + fabRect.width / 2));
         
-        const spread = Math.PI / 4;
-        const angle = angleToCenter + (Math.random() - 0.3) * spread;
+        const spread = Math.PI / 2;
+        const angle = angleToCenter + (Math.random() - 0.5) * spread;
 
         const speed = Math.random() * 15 + 8;
         const vx = Math.cos(angle) * speed;
         const vy = Math.sin(angle) * speed;
-        const gravity = 0.4;
+        const gravity = 0.2; // Lighter petals fall slower
+        
+        let rotation = Math.random() * 360;
+        const rotationSpeed = Math.random() * 10 - 5;
 
         const pileHeight = 50;
         const randomYOffset = Math.random() * pileHeight;
         const finalY = document.body.scrollHeight - randomYOffset;
 
-        activeParticles.push({ element, x, y, vx, vy, gravity, finalY, size });
+        activeParticles.push({ element, x, y, vx, vy, gravity, finalY, size, rotation, rotationSpeed });
     }
 
     let animationRunning = false;
@@ -134,14 +137,13 @@ document.addEventListener('DOMContentLoaded', () => {
             p.vy += p.gravity;
             p.x += p.vx;
             p.y += p.vy;
+            p.rotation += p.rotationSpeed;
 
             if (p.x < -p.size || p.x > screenWidth) {
-                // Particle is out of horizontal bounds, remove it.
                 p.element.remove();
                 activeParticles.splice(i, 1);
             } else if (p.y >= p.finalY) {
-                // Particle has landed in the pile.
-                p.element.style.transform = `translate3d(${p.x}px, ${p.finalY}px, 0)`;
+                p.element.style.transform = `translate3d(${p.x}px, ${p.finalY}px, 0) rotate(${p.rotation}deg)`;
                 piledParticles.push(p.element);
                 if (piledParticles.length > maxPiledParticles) {
                     const oldestParticle = piledParticles.shift();
@@ -151,8 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 activeParticles.splice(i, 1);
             } else {
-                // Particle is still in flight.
-                p.element.style.transform = `translate3d(${p.x}px, ${p.y}px, 0)`;
+                p.element.style.transform = `translate3d(${p.x}px, ${p.y}px, 0) rotate(${p.rotation}deg)`;
             }
         }
 
