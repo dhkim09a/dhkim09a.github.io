@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const countdown = () => {
-        const countDate = new Date('October 25, 2025 14:00:00').getTime();
+        const countDate = new Date('January 18, 2026 11:00:00').getTime();
         const now = new Date().getTime();
         const gap = countDate - now;
 
@@ -14,11 +14,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const textMinute = Math.floor((gap % hour) / minute);
         const textSecond = Math.floor((gap % minute) / second);
 
-        document.getElementById('timer').innerText = `${textDay}d ${textHour}h ${textMinute}m ${textSecond}s`;
+        document.getElementById('timer').innerText = `${textDay}일 ${textHour}시간 ${textMinute}분 ${textSecond}초`;
 
         if (gap < 0) {
             clearInterval(interval);
-            document.getElementById('timer').innerText = "The day is here!";
+            document.getElementById('timer').innerText = "결혼식 당일입니다!";
         }
     };
 
