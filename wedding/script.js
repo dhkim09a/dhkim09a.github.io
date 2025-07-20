@@ -23,4 +23,44 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const interval = setInterval(countdown, 1000);
+
+    /* Petal Animation */
+    const petalContainer = document.createElement('div');
+    petalContainer.id = 'petal-container';
+    document.body.appendChild(petalContainer);
+
+    const piledPetals = [];
+    const maxPiledPetals = 100;
+
+    function createPetal() {
+        const petal = document.createElement('div');
+        petal.classList.add('petal');
+
+        const animationDuration = Math.random() * 7 + 8; // 8 to 15 seconds
+        const startPosition = Math.random() * window.innerWidth;
+
+        petal.style.left = `${startPosition}px`;
+        petal.style.animationDuration = `${animationDuration}s`;
+
+        petal.addEventListener('animationend', () => {
+            petal.style.animation = 'none';
+
+            const pileHeight = 50;
+            const randomOffset = Math.random() * pileHeight;
+            petal.style.top = `${window.innerHeight - randomOffset}px`;
+
+            piledPetals.push(petal);
+
+            if (piledPetals.length > maxPiledPetals) {
+                const oldestPetal = piledPetals.shift();
+                if (oldestPetal) {
+                    oldestPetal.remove();
+                }
+            }
+        });
+
+        petalContainer.appendChild(petal);
+    }
+
+    // setInterval(createPetal, 3000);
 });
