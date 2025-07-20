@@ -1,0 +1,93 @@
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: #fdfdfd;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.05);
+    padding: 40px;
+}
+
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+}
+
+header h1 {
+    font-size: 2.5em;
+    color: #d5a9a9;
+    margin: 0;
+}
+
+header p {
+    font-size: 1.2em;
+    margin: 10px 0 30px;
+}
+
+.names h2 {
+    font-size: 3.5em;
+    margin: 20px 0;
+}
+
+.details {
+    display: flex;
+    justify-content: space-around;
+    margin: 40px 0;
+    padding: 20px 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+.detail-item {
+    flex: 1;
+}
+
+.detail-item h3 {
+    font-size: 1.5em;
+    color: #d5a9a9;
+}
+
+.detail-item p {
+    margin: 5px 0;
+    font-size: 1.1em;
+}
+
+.countdown {
+    margin: 40px 0;
+}
+
+#timer {
+    font-size: 2em;
+    font-weight: bold;
+    color: #d5a9a9;
+}
+
+.gallery h3 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.gallery-images {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+.gallery-images img {
+    width: 100%;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+footer {
+    margin-top: 40px;
+    font-style: italic;
+    color: #777;
+}
