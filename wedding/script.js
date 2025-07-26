@@ -163,4 +163,32 @@ document.addEventListener('DOMContentLoaded', () => {
             animationRunning = false;
         }
     }
+
+    /* Gallery */
+    const galleryContainer = document.querySelector('.gallery-images');
+    const imageViewer = document.getElementById('image-viewer');
+    const fullImage = document.getElementById('full-image');
+    const closeViewer = document.querySelector('.close-viewer');
+
+    imageFiles.forEach(fileName => {
+        const img = document.createElement('img');
+        img.src = `assets/album/${fileName}`;
+        img.alt = 'Wedding photo';
+        galleryContainer.appendChild(img);
+
+        img.addEventListener('click', () => {
+            imageViewer.style.display = 'block';
+            fullImage.src = img.src;
+        });
+    });
+
+    closeViewer.addEventListener('click', () => {
+        imageViewer.style.display = 'none';
+    });
+
+    imageViewer.addEventListener('click', (e) => {
+        if (e.target === imageViewer) {
+            imageViewer.style.display = 'none';
+        }
+    });
 });
