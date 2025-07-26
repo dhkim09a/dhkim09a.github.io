@@ -3,12 +3,13 @@ html, body {
 }
 
 body {
-    font-family: 'Lato', sans-serif;
+    font-family: "Nanum Gothic", sans-serif;
     background-color: #fdfdfd;
     color: #333;
     margin: 0;
     padding: 20px;
     text-align: center;
+    line-height: 2;
 }
 
 .container {
@@ -21,7 +22,12 @@ body {
 }
 
 h1, h2, h3 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Nanum Brush Script', serif;
+}
+
+h3 {
+    font-size: 2em;
+    margin-bottom: 20px;
 }
 
 header h1 {
@@ -36,7 +42,9 @@ header p {
 }
 
 .names {
-    background-image: url('assets/banner_img.png');
+    font-family: 'Nanum Myeongjo', serif;
+    font-size: large;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('assets/banner_img.png');
     background-size: cover;
     background-position: center;
     padding: 100px 20px;
@@ -44,8 +52,13 @@ header p {
 }
 
 .names h2 {
+    font-family: 'Nanum Myeongjo', serif;
     font-size: 2.5em;
     margin: 20px 0;
+}
+
+.invitation {
+    font-family: 'Nanum Myeongjo', serif;
 }
 
 .details {
@@ -61,11 +74,6 @@ header p {
 
 .detail-item {
     flex: 1;
-}
-
-.detail-item h3 {
-    font-size: 1.5em;
-    color: #d5a9a9;
 }
 
 .detail-item p {
@@ -105,11 +113,6 @@ header p {
     font-size: 2em;
     font-weight: bold;
     color: #d5a9a9;
-}
-
-.gallery h3 {
-    font-size: 2em;
-    margin-bottom: 20px;
 }
 
 .gallery-images {
