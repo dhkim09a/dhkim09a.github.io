@@ -44,7 +44,9 @@ header p {
 .names {
     font-family: 'Nanum Myeongjo', serif;
     font-size: large;
-    background-image: linear-gradient(rgba(0 0 0 / 0.4), rgba(0 0 0 / 0.4)), url('assets/banner_img.png');
+    /* background-image: linear-gradient(rgba(0 0 0 / 0.4), rgba(0 0 0 / 0.4)), url('assets/banner_img.png'); */
+    background: #00000044 url('assets/banner_img.png') no-repeat;
+    background-blend-mode: darken;
     background-size: cover;
     background-position: center;
     padding: 100px 20px;
