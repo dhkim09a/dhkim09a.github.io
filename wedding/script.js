@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    const interval = setInterval(countdown, 1000);
+    // const interval = setInterval(countdown, 1000);
 
     /* Petal Animation */
     const petalContainer = document.createElement('div');
