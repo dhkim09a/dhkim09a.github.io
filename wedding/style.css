@@ -29,11 +29,11 @@ a:active {
 }
 
 h1, h2, h3 {
-    font-family: "Nanum Brush Script", serif;
+    /* font-family: "Nanum Brush Script", serif; */
+    font-family: "Nanum Myeongjo", serif;
 }
 
 h3 {
-    font-family: "Nanum Brush Script", serif;
     font-size: 2em;
     margin-bottom: 20px;
 }
@@ -98,7 +98,7 @@ header p {
 .parents-contacts {
     display: flex;
     flex-direction: row;
-    gap: 60px;
+    gap: 40px;
     padding: 20px 0;
     justify-content: center;
 }
