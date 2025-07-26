@@ -22,7 +22,7 @@ body {
 }
 
 h1, h2, h3 {
-    font-family: 'Nanum Brush Script', serif;
+    font-family: "Nanum Brush Script", serif;
 }
 
 h3 {
@@ -44,7 +44,7 @@ header p {
 .names {
     font-family: 'Nanum Myeongjo', serif;
     font-size: large;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('assets/banner_img.png');
+    background-image: linear-gradient(rgba(0 0 0 / 0.4), rgba(0 0 0 / 0.4)), url('assets/banner_img.png');
     background-size: cover;
     background-position: center;
     padding: 100px 20px;
