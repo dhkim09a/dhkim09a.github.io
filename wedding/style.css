@@ -12,6 +12,13 @@ body {
     line-height: 2;
 }
 
+a:link,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: none;
+}
+
 .container {
     max-width: 600px;
     margin: 0 auto;
@@ -26,6 +33,7 @@ h1, h2, h3 {
 }
 
 h3 {
+    font-family: "Nanum Brush Script", serif;
     font-size: 2em;
     margin-bottom: 20px;
 }
@@ -81,6 +89,26 @@ header p {
 .detail-item p {
     margin: 5px 0;
     font-size: 1.1em;
+}
+
+.contacts {
+    padding: 20px 0;
+}
+
+.parents-contacts {
+    display: flex;
+    flex-direction: row;
+    gap: 60px;
+    padding: 20px 0;
+    justify-content: center;
+}
+
+.parents-contacts h3 {
+    font-family: 'Nanum Gothic', serif;
+    font-size: 1em;
+    font-weight: bold;
+    color: #696969;
+    margin: 0 0;
 }
 
 .map-buttons {
