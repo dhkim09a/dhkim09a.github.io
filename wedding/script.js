@@ -126,18 +126,25 @@ document.addEventListener('DOMContentLoaded', () => {
         activeParticles.push({ element, x, y, vx, vy, gravity, finalY, size, rotation, rotationSpeed });
     }
 
+    let lastTime = 0;
     let animationRunning = false;
-    function runAnimation() {
+    function runAnimation(currentTime) {
+        if (!lastTime) {
+            lastTime = currentTime;
+        }
+        const deltaTime = (currentTime - lastTime) / 16.67; // Normalize to a 60fps baseline
+        lastTime = currentTime;
         animationRunning = true;
+
         const screenWidth = document.documentElement.clientWidth;
         
         for (let i = activeParticles.length - 1; i >= 0; i--) {
             const p = activeParticles[i];
 
-            p.vy += p.gravity;
-            p.x += p.vx;
-            p.y += p.vy;
-            p.rotation += p.rotationSpeed;
+            p.vy += p.gravity * deltaTime;
+            p.x += p.vx * deltaTime;
+            p.y += p.vy * deltaTime;
+            p.rotation += p.rotationSpeed * deltaTime;
 
             if (p.x < -p.size || p.x > screenWidth) {
                 p.element.remove();
@@ -161,6 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
             requestAnimationFrame(runAnimation);
         } else {
             animationRunning = false;
+            lastTime = 0; // Reset for the next animation trigger
         }
     }
 

@@ -140,6 +140,10 @@ header p {
     color: #3C1E1E;
 }
 
+p.small-text {
+    font-size: 0.9em;
+}
+
 .countdown {
     margin: 40px 0;
 }
