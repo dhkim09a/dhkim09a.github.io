@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
             createParticle(fabRect);
         }
         if (activeParticles.length > 0 && !animationRunning) {
-            runAnimation();
+            requestAnimationFrame(runAnimation);
         }
     });
 
