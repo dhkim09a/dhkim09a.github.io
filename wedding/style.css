@@ -111,6 +111,11 @@ header p {
     margin: 0 0;
 }
 
+.map-img {
+    width: 100%;
+}
+
+
 .map-buttons {
     margin-top: 15px;
 }
