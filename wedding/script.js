@@ -40,8 +40,8 @@ document.addEventListener('DOMContentLoaded', () => {
     petalContainer.id = 'petal-container';
     document.body.appendChild(petalContainer);
 
-    const piledPetals = [];
-    const maxPiledPetals = 100;
+    // const piledPetals = [];
+    // const maxPiledPetals = 100;
 
     function createPetal() {
         const petal = document.createElement('div');
@@ -56,24 +56,24 @@ document.addEventListener('DOMContentLoaded', () => {
         petal.addEventListener('animationend', () => {
             petal.style.animation = 'none';
 
-            const pileHeight = 50;
-            const randomOffset = Math.random() * pileHeight;
-            petal.style.top = `${window.innerHeight - randomOffset}px`;
+            // const pileHeight = 50;
+            // const randomOffset = Math.random() * pileHeight;
+            // petal.style.top = `${window.innerHeight - randomOffset}px`;
 
-            piledPetals.push(petal);
+            // piledPetals.push(petal);
 
-            if (piledPetals.length > maxPiledPetals) {
-                const oldestPetal = piledPetals.shift();
-                if (oldestPetal) {
-                    oldestPetal.remove();
-                }
-            }
+            // if (piledPetals.length > maxPiledPetals) {
+            //     const oldestPetal = piledPetals.shift();
+            //     if (oldestPetal) {
+            //         oldestPetal.remove();
+            //     }
+            // }
         });
 
         petalContainer.appendChild(petal);
     }
 
-    // setInterval(createPetal, 300);
+    setInterval(createPetal, 3000);
 
     /* FAB and Particle Animation */
     const fab = document.getElementById('fab');
@@ -186,7 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
             p.y += p.vy * deltaTime;
             p.rotation += p.rotationSpeed * deltaTime;
 
-            if (p.x < -p.size || p.x > screenWidth) {
+            if (p.x < -p.size || p.x > screenWidth - p.size) {
                 p.element.remove();
                 activeParticles.splice(i, 1);
             } else if (p.y >= p.finalY) {
