@@ -8,6 +8,36 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&family=Nanum+Myeongjo:wght@700&family=Nanum+Brush+Script:wght@700&display=swap" rel="stylesheet">
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+        import { getDatabase, ref, onValue, runTransaction, increment } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAglLFvOBAm0lVIs0wJZJQHsxA5A_vLygM",
+            authDomain: "wedding-dh-sh.firebaseapp.com",
+            projectId: "wedding-dh-sh",
+            storageBucket: "wedding-dh-sh.firebasestorage.app",
+            messagingSenderId: "494561730222",
+            appId: "1:494561730222:web:e75f2508d9e102acf1173f",
+            measurementId: "G-SRQH4VELCF",
+            databaseURL: "https://wedding-dh-sh-default-rtdb.firebaseio.com"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+
+        // Make functions available globally for script.js
+        window.firebaseDB = {
+            ref,
+            onValue,
+            runTransaction,
+            increment,
+            database
+        };
+    </script>
 </head>
 <body>
     <!-- <div class="container"> -->
@@ -82,10 +112,18 @@
             </div>
         </section>
 
-        <!-- <section>
+        <section>
             <h3>마음 전하실 곳</h3>
 
-        </section> -->
+        </section>
+
+        <section class="donation">
+            <h3>함께 나누는 축하의 마음</h3>
+            <p>오른쪽 아래 폭죽 <span>🎉</span> 버튼을 눌러 축하하는 마음을 나누어 주세요. 축하해 주신 분 마다 1,000 원 씩,</p>
+            <p>지금까지 총 <span id="donationAmountDisplay"></span> 원이</p>
+            <p>1월 18일 <a href="www.unicef.or.kr" class="donationDst">UNICEF</a> 와 <a href="msf.or.kr" class="donationDst">국경없는의사회</a>에 기부됩니다.</p>
+            
+        </section>
 
         <footer>
             <img src="assets/footer_img.png" alt="Wedding" class="footer-img">

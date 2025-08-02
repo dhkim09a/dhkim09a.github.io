@@ -24,6 +24,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // const interval = setInterval(countdown, 1000);
 
+    /* Firebase and Donation Logic */
+    const { ref, onValue, runTransaction, increment, database } = window.firebaseDB;
+    const donationRef = ref(database, 'donations/totalAmount');
+    const donationAmountDisplay = document.getElementById('donationAmountDisplay');
+
+    // Listen for changes in the donation amount and update the display
+    onValue(donationRef, (snapshot) => {
+        const amount = snapshot.val() || 0;
+        donationAmountDisplay.innerText = amount.toLocaleString();
+    });
+
     /* Petal Animation */
     const petalContainer = document.createElement('div');
     petalContainer.id = 'petal-container';
@@ -82,6 +93,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const activeParticles = [];
 
     fab.addEventListener('click', () => {
+        // This is the new donation logic
+        handleDonation();
+
+        // This is the existing petal animation logic
         const fabRect = fab.getBoundingClientRect();
         for (let i = 0; i < 50; i++) {
             createParticle(fabRect);
@@ -90,6 +105,30 @@ document.addEventListener('DOMContentLoaded', () => {
             requestAnimationFrame(runAnimation);
         }
     });
+
+    // Donation handling function
+    const handleDonation = async () => {
+        if (localStorage.getItem('hasDonated')) {
+            // alert('이미 마음을 전해주셨습니다. 감사합니다!');
+            return;
+        }
+
+        try {
+            await runTransaction(donationRef, (currentData) => {
+                if (currentData === null) {
+                    return 1000; // If it doesn't exist, initialize it
+                } else {
+                    return currentData + 1000; // Otherwise, increment
+                }
+            });
+
+            localStorage.setItem('hasDonated', 'true');
+            // The onValue listener will automatically update the display
+        } catch (error) {
+            console.error("Error processing donation: ", error);
+            alert('오류가 발생했습니다. 다시 시도해주세요.');
+        }
+    };
 
     function createParticle(fabRect) {
         const element = document.createElement('div');

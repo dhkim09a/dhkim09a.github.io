@@ -91,6 +91,20 @@ header p {
     font-size: 1.1em;
 }
 
+.donation {
+    padding: 20px 0;
+    border-top: 1px solid #eee;
+}
+
+#donationAmountDisplay {
+    font-family: 'Nanum Myeongjo', serif;
+    font-size: 2em;
+}
+
+.donationDst {
+    font-weight: bold;
+}
+
 .contacts {
     padding: 20px 0;
 }
@@ -113,6 +127,7 @@ header p {
 
 .map-img {
     width: 100%;
+    max-width: 500px;
 }
 
 
