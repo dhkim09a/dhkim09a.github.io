@@ -160,7 +160,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const pileHeight = 50;
         const randomYOffset = Math.random() * pileHeight;
-        const finalY = document.body.scrollHeight - randomYOffset;
+        // petal is 10px by 10px
+        const finalY = document.body.scrollHeight - randomYOffset - 20;
 
         activeParticles.push({ element, x, y, vx, vy, gravity, finalY, size, rotation, rotationSpeed });
     }

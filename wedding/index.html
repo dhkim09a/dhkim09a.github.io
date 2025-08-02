@@ -1,133 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Wedding Invitation</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&family=Nanum+Myeongjo:wght@700&family=Nanum+Brush+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&family=Nanum+Myeongjo:wght@700&family=Nanum+Brush+Script:wght@700&display=swap"
+      rel="stylesheet"
+    />
     <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
-        import { getDatabase, ref, onValue, runTransaction, increment } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+      import {
+        getDatabase,
+        ref,
+        onValue,
+        runTransaction,
+        increment,
+      } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
 
-        // Your web app's Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyAglLFvOBAm0lVIs0wJZJQHsxA5A_vLygM",
-            authDomain: "wedding-dh-sh.firebaseapp.com",
-            projectId: "wedding-dh-sh",
-            storageBucket: "wedding-dh-sh.firebasestorage.app",
-            messagingSenderId: "494561730222",
-            appId: "1:494561730222:web:e75f2508d9e102acf1173f",
-            measurementId: "G-SRQH4VELCF",
-            databaseURL: "https://wedding-dh-sh-default-rtdb.firebaseio.com"
-        };
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyAglLFvOBAm0lVIs0wJZJQHsxA5A_vLygM",
+        authDomain: "wedding-dh-sh.firebaseapp.com",
+        projectId: "wedding-dh-sh",
+        storageBucket: "wedding-dh-sh.firebasestorage.app",
+        messagingSenderId: "494561730222",
+        appId: "1:494561730222:web:e75f2508d9e102acf1173f",
+        measurementId: "G-SRQH4VELCF",
+        databaseURL: "https://wedding-dh-sh-default-rtdb.firebaseio.com",
+      };
 
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const database = getDatabase(app);
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const database = getDatabase(app);
 
-        // Make functions available globally for script.js
-        window.firebaseDB = {
-            ref,
-            onValue,
-            runTransaction,
-            increment,
-            database
-        };
+      // Make functions available globally for script.js
+      window.firebaseDB = {
+        ref,
+        onValue,
+        runTransaction,
+        increment,
+        database,
+      };
     </script>
-</head>
-<body>
+  </head>
+  <body>
     <!-- <div class="container"> -->
-        <!-- <header>
+    <!-- <header>
             <h1>초대합니다</h1>
             <p>김동휘와 한수현의 결혼식에</p>
         </header> -->
 
-        <section class="names">
-            <p>2026. 1. 18</p>
-            <br/><br/><br/><br/><br/>
-            <br/><br/><br/><br/><br/>
-            <h2>김 동 휘 &ensp; 한 수 현</h2>
-            <p>일요일 오전 11시</p>
-            <p>연구공원 웨딩홀</p>
-        </section>
+    <section class="names">
+      <p>2026. 1. 18</p>
+      <br /><br /><br /><br /><br />
+      <br /><br /><br /><br /><br />
+      <h2>김 동 휘 &ensp; 한 수 현</h2>
+      <p>일요일 오전 11시</p>
+      <p>연구공원 웨딩홀</p>
+    </section>
 
-        <section class="invitation">
-            <p>
-                오랜 기다림 끝에<br/>
-                사랑이라는 이름으로 한 자리에 섭니다.<br/>
-                소중한 걸음을 내디뎌 주신다면<br/>
-                그 마음 오래도록 간직하겠습니다.<br/>
-            </p>
-        </section>
+    <section class="invitation">
+      <p>
+        오랜 기다림 끝에<br />
+        사랑이라는 이름으로 한 자리에 섭니다.<br />
+        소중한 걸음을 내디뎌 주신다면<br />
+        그 마음 오래도록 간직하겠습니다.<br />
+      </p>
+    </section>
 
-        <section class="details">
-            <!-- <div class="detail-item">
+    <section class="details">
+      <!-- <div class="detail-item">
                 <h3>좋은 날</h3>
                 <p>2026년 1월 18일 일요일</p>
                 <p>오전 11시</p>
             </div> -->
-            <div class="detail-item">
-                <h3>모시는 날, 오시는 길</h3>
-                <img src="assets/map.png" alt="Map" class="map-img">
-                <p><b>2026. 1. 18 오전 11시 <br/> 서울대학교 연구공원 웨딩홀</b></p>
-                <p>서울 관악구 관악로 1 연구공원 본관 1층*</p>
-                <div class="map-buttons">
-                    <a href="https://naver.me/xgNS8Uf4" target="_blank" class="map-button naver">네이버 지도</a>
-                    <a href="https://place.map.kakao.com/8634826" target="_blank" class="map-button kakao">카카오 지도</a>
-                </div>
-                <br/>
-                <p class="small-text">* 정문으로 차량 진입하시는 경우 통행료가 부과될 수 있으므로 차량 이용 시 후문 방향으로 방문해 주시기를 부탁 드립니다.</p>
-            </div>
-        </section>
+      <div class="detail-item">
+        <h3>모시는 날, 오시는 길</h3>
+        <img src="assets/map.png" alt="Map" class="map-img" />
+        <p>
+          <b
+            >2026. 1. 18 오전 11시 <br />
+            서울대학교 연구공원 웨딩홀</b
+          >
+        </p>
+        <p>서울 관악구 관악로 1 연구공원 본관 1층*</p>
+        <div class="map-buttons">
+          <a
+            href="https://naver.me/xgNS8Uf4"
+            target="_blank"
+            class="map-button naver"
+            >네이버 지도</a
+          >
+          <a
+            href="https://place.map.kakao.com/8634826"
+            target="_blank"
+            class="map-button kakao"
+            >카카오 지도</a
+          >
+        </div>
+        <br />
+        <p class="small-text">
+          * 정문으로 차량 진입하시는 경우 통행료가 부과될 수 있으므로 차량 이용
+          시 후문 방향으로 방문해 주시기를 부탁 드립니다.
+        </p>
+      </div>
+    </section>
 
-        <!-- <section class="countdown">
+    <!-- <section class="countdown">
             <h3>결혼식까지 남은 시간</h3>
             <div id="timer"></div>
         </section> -->
 
-        <section class="gallery">
-            <h3>신랑 신부 미리 만나기</h3>
-            <div class="gallery-images"></div>
-        </section>
+    <section class="gallery">
+      <h3>신랑 신부 미리 만나기</h3>
+      <div class="gallery-images"></div>
+      <!-- </section>
 
-        <section class="contacts">
-            <!-- <h3>축하 인사 전하기</h3> -->
-            <p>신랑에게 축하인사 &ensp; <a href="tel:01065851561">📞</a> | <a href="sms:01065851561">💬</a></p>
-            <p>신부에게 축하인사 &ensp; <a href="tel:01072829405">📞</a> | <a href="sms:01072829405">💬</a></p>
-        </section>
-
-        <section class="parents-contacts">
-            <div>
-                <h3>신랑측 혼주</h3>
-                <p>아버지 김왕래 &ensp; <a href="tel:01029768088">📞</a> | <a href="sms:01029768088">💬</a></p>
-                <p>어머니 신경순 &ensp; <a href="tel:01030853517">📞</a> | <a href="sms:01030853517">💬</a></p>
-            </div>
-            <div>
-                <h3>신부측 혼주</h3>
-                <p>어머니 조인순 &ensp; <a href="tel:">📞</a> | <a href="sms:">💬</a></p>
-            </div>
-        </section>
+        <section class="contacts"> -->
+      <!-- <h3>축하 인사 전하기</h3> -->
+      <br />
+      <p>
+        신랑에게 축하인사 &ensp; <a href="tel:01065851561">📞</a> |
+        <a href="sms:01065851561">💬</a>
+      </p>
+      <p>
+        신부에게 축하인사 &ensp; <a href="tel:01072829405">📞</a> |
+        <a href="sms:01072829405">💬</a>
+      </p>
+      <br />
+      <div class="parents-contacts">
+        <div>
+          <h3 class="emph">신랑측 혼주</h3>
+          <p>
+            아버지 김왕래 &ensp; <a href="tel:01029768088">📞</a> |
+            <a href="sms:01029768088">💬</a>
+          </p>
+          <p>
+            어머니 신경순 &ensp; <a href="tel:01030853517">📞</a> |
+            <a href="sms:01030853517">💬</a>
+          </p>
+        </div>
+        <div>
+          <h3 class="emph">신부측 혼주</h3>
+          <p>
+            어머니 조인순 &ensp; <a href="tel:">📞</a> | <a href="sms:">💬</a>
+          </p>
+        </div>
+      </div>
+      <!-- </section>
 
         <section>
-            <h3>마음 전하실 곳</h3>
+            <h3>마음 전하실 곳</h3> -->
+      <!-- <br />
+      <p class="emph">마음 전하실 곳</p>
+      <details>
+        <summary>신랑 측</summary>
+        <p>신랑 김동휘: </p>
+      </details>
+      <details>
+        <summary>신부 측</summary>
+        <p>신부 한수현: </p>
+      </details>
+    </section> -->
 
-        </section>
+    <section class="donation">
+      <h3>함께 나누는 축하의 마음</h3>
+      <p>
+        오른쪽 아래 폭죽 <span>🎉</span> 버튼을 눌러 축하하는 마음을 나누어
+        주세요. 축하해 주신 분 마다 1,000 원 씩,
+      </p>
+      <p>지금까지 총 <span id="donationAmountDisplay"></span> 원이</p>
+      <p>
+        1월 18일
+        <a href="https://www.unicef.or.kr" class="donationDst">UNICEF</a> 와
+        <a href="https://msf.or.kr" class="donationDst">국경없는의사회</a>에
+        기부됩니다.
+      </p>
+    </section>
 
-        <section class="donation">
-            <h3>함께 나누는 축하의 마음</h3>
-            <p>오른쪽 아래 폭죽 <span>🎉</span> 버튼을 눌러 축하하는 마음을 나누어 주세요. 축하해 주신 분 마다 1,000 원 씩,</p>
-            <p>지금까지 총 <span id="donationAmountDisplay"></span> 원이</p>
-            <p>1월 18일 <a href="www.unicef.or.kr" class="donationDst">UNICEF</a> 와 <a href="msf.or.kr" class="donationDst">국경없는의사회</a>에 기부됩니다.</p>
-            
-        </section>
-
-        <footer>
-            <img src="assets/footer_img.png" alt="Wedding" class="footer-img">
-        </footer>
+    <footer>
+      <img src="assets/footer_img.png" alt="Wedding" class="footer-img" />
+    </footer>
 
     <!-- </div> -->
 
@@ -136,8 +194,8 @@
     <div id="fab" class="fab">🎉</div>
 
     <div id="image-viewer" class="image-viewer">
-        <span class="close-viewer">&times;</span>
-        <img class="modal-content" id="full-image">
+      <span class="close-viewer">&times;</span>
+      <img class="modal-content" id="full-image" />
     </div>
-</body>
+  </body>
 </html>
