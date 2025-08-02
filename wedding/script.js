@@ -28,6 +28,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const { ref, onValue, runTransaction, increment, database } = window.firebaseDB;
     const donationRef = ref(database, 'donations/totalAmount');
     const donationAmountDisplay = document.getElementById('donationAmountDisplay');
+    const donationDoneDiv = document.querySelector('.donationDone');
+
+    // Check on page load if the user has already donated
+    if (localStorage.getItem('hasDonated')) {
+        donationDoneDiv.style.display = 'block';
+    }
 
     // Listen for changes in the donation amount and update the display
     onValue(donationRef, (snapshot) => {
@@ -123,6 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             localStorage.setItem('hasDonated', 'true');
+            donationDoneDiv.style.display = 'block';
             // The onValue listener will automatically update the display
         } catch (error) {
             console.error("Error processing donation: ", error);

@@ -103,6 +103,18 @@ header p {
     font-weight: bold;
 }
 
+.donationDone {
+    display: none;
+}
+
+.donationDone {
+    background-color: #777;
+    font-family: 'Nanum Gothic', serif;
+    font-size: 1em;
+    font-weight: bold;
+    color: #eee;
+}
+
 /* .contacts {
     padding: 20px 0;
 } */
