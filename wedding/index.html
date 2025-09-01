@@ -8,19 +8,19 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&family=Nanum+Myeongjo:wght@700&family=Nanum+Brush+Script:wght@700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&family=Nanum+Myeongjo:wght@700&display=swap"
       rel="stylesheet"
     />
     <script type="module">
       // Import the functions you need from the SDKs you need
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
       import {
         getDatabase,
         ref,
         onValue,
         runTransaction,
         increment,
-      } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
+      } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
 
       // Your web app's Firebase configuration
       const firebaseConfig = {
@@ -49,8 +49,6 @@
     </script>
   </head>
   <body>
-    <!-- <div class="container"> -->
-
     <section class="names">
       <p>2026. 1. 18</p>
       <br /><br /><br /><br /><br />
@@ -69,48 +67,39 @@
       </p>
     </section>
 
-    <section class="details">
-        <h3>모시는 날, 오시는 길</h3>
-        <img src="assets/map.png" alt="Map" class="map-img" />
-        <p>
-          <b
-            >2026. 1. 18 오전 11시 <br />
-            서울대학교 연구공원 웨딩홀</b
-          >
-        </p>
-        <p>서울 관악구 관악로 1 연구공원 본관 1층*</p>
-        <div class="map-buttons">
-          <a
-            href="https://naver.me/xgNS8Uf4"
-            target="_blank"
-            class="map-button naver"
-            >네이버 지도</a
-          >
-          <a
-            href="https://place.map.kakao.com/8634826"
-            target="_blank"
-            class="map-button kakao"
-            >카카오 지도</a
-          >
-        </div>
-        <p class="small-text">
-          * 정문으로 차량 진입하시는 경우 통행료가 부과될 수 있으므로 차량 이용
-          시 후문 방향으로 방문해 주시기를 부탁 드립니다.
-        </p>
+    <section class="map">
+      <h3>모시는 날, 오시는 길</h3>
+      <img src="assets/map.png" alt="Map" class="map-img" />
+      <p>
+        <b
+          >2026. 1. 18 오전 11시 <br />
+          서울대학교 연구공원 웨딩홀</b
+        >
+      </p>
+      <p>서울 관악구 관악로 1 연구공원 본관 1층*</p>
+      <div class="map-buttons">
+        <a
+          href="https://naver.me/xgNS8Uf4"
+          target="_blank"
+          class="map-button naver"
+          >네이버 지도</a
+        >
+        <a
+          href="https://place.map.kakao.com/8634826"
+          target="_blank"
+          class="map-button kakao"
+          >카카오 지도</a
+        >
+      </div>
+      <p class="small-text">
+        * 정문으로 차량 진입하시는 경우 통행료가 부과될 수 있으므로 차량 이용 시
+        후문 방향으로 방문해 주시기를 부탁 드립니다.
+      </p>
     </section>
-
-    <!-- <section class="countdown">
-            <h3>결혼식까지 남은 시간</h3>
-            <div id="timer"></div>
-        </section> -->
 
     <section class="gallery">
       <h3>신랑 신부 미리 만나기</h3>
       <div class="gallery-images"></div>
-      <!-- </section>
-
-        <section class="contacts"> -->
-      <!-- <h3>축하 인사 전하기</h3> -->
       <br />
       <p>
         신랑에게 축하인사 &ensp; <a href="tel:01065851561">📞</a> |
@@ -141,26 +130,13 @@
         </div>
       </div>
       <br />
-      <!-- </section>
-
-        <section>
-            <h3>마음 전하실 곳</h3> -->
-      <!-- <br />
-      <p class="emph">마음 전하실 곳</p>
-      <details>
-        <summary>신랑 측</summary>
-        <p>신랑 김동휘: </p>
-      </details>
-      <details>
-        <summary>신부 측</summary>
-        <p>신부 한수현: </p>
-      </details>
-    </section> -->
+    </section>
 
     <section class="donation">
       <h3>함께 나누는 축하의 마음</h3>
       <p>
-        오른쪽 아래 폭죽 <span>🎉</span>을 눌러 축하해 주세요. 축하해주신 분 마다 1,000 원 씩,
+        오른쪽 아래 폭죽 <span>🎉</span>을 눌러 축하해 주세요. 축하해주신 분
+        마다 1,000 원 씩,
       </p>
       <p>지금까지 <span id="donationAmountDisplay"></span> 원이</p>
       <p>
@@ -170,20 +146,21 @@
         기부됩니다.
       </p>
       <div class="donationDone">
-        <p>+1,000 원이 기부되었습니다.<br />소중한 마음 감사히 나누며 살아보겠습니다.</p>
+        <p>
+          +1,000 원이 기부되었습니다.<br />소중한 마음 감사히 나누며
+          살아보겠습니다.
+        </p>
       </div>
       <br />
       <p class="small-text">
-        * 폭죽 <span>🎉</span>을 여러 번 눌러도 한 번만 기부되지만, 대신 꽃잎이 예쁘게 쌓입니다 <span>😊</span>.
+        * 폭죽 <span>🎉</span>을 여러 번 눌러도 한 번만 기부되지만, 대신 꽃잎이
+        예쁘게 쌓입니다 <span>😊</span>.
       </p>
-
     </section>
 
     <footer>
       <img src="assets/footer_img.png" alt="Wedding" class="footer-img" />
     </footer>
-
-    <!-- </div> -->
 
     <script src="script.js"></script>
     <script src="assets/album/image-list.js"></script>
