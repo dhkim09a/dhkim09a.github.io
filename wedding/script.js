@@ -122,9 +122,9 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             await runTransaction(donationRef, (currentData) => {
                 if (currentData === null) {
-                    return 1000; // If it doesn't exist, initialize it
+                    return 1; // If it doesn't exist, initialize it
                 } else {
-                    return currentData + 1000; // Otherwise, increment
+                    return currentData + 1; // Otherwise, increment
                 }
             });
 
