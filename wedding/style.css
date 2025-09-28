@@ -284,5 +284,14 @@ footer {
 #guestbook-messages {
     max-width: 500px;
     margin: 0 auto;
-    text-align: left;
+    text-align: center; /* Center the names */
+    line-height: 1.8;
+}
+
+#guestbook-messages span {
+    margin: 0 5px; /* Add some space between names */
+}
+
+#guestbook-messages span:not(:last-child)::after {
+    content: ", "; /* Add a comma after each name except the last one */
 }

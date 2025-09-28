@@ -31,7 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const guestbookRef = ref(database, 'guestbook');
     const guestbookMessages = document.getElementById('guestbook-messages');
     const guestName = document.getElementById('guest-name');
-    const guestMessage = document.getElementById('guest-message');
     const submitButton = document.getElementById('submit-message');
 
     // Donation
@@ -53,18 +52,29 @@ document.addEventListener('DOMContentLoaded', () => {
     // Listen for new messages and display them
     onValue(guestbookRef, (snapshot) => {
         guestbookMessages.innerHTML = '';
+        const names = [];
         snapshot.forEach((childSnapshot) => {
             const message = childSnapshot.val();
-            const messageElement = document.createElement('p');
-            messageElement.innerText = `♥️ [${message.name}] ${message.message}`;
-            guestbookMessages.appendChild(messageElement);
+            if (message.name) {
+                names.push(message.name);
+            }
         });
+
+        const obfuscateName = (name) => {
+            if (name.length <= 2) {
+                return name;
+            }
+            return name[0] + '*'.repeat(name.length - 2) + name[name.length - 1];
+        };
+
+        const namesHtml = names.map(name => `<span>♥️ ${obfuscateName(name)}</span>`).join('');
+        guestbookMessages.innerHTML = `<p>${namesHtml}</p>`;
     });
 
     // Handle message submission and donation
     const handleGuestbookSubmit = async () => {
-        if (guestName.value.trim() === '' || guestMessage.value.trim() === '') {
-            alert('이름과 메시지를 모두 입력해주세요.');
+        if (guestName.value.trim() === '') {
+            alert('이름을 입력해주세요.');
             return;
         }
 
@@ -74,11 +84,9 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             await push(guestbookRef, {
                 name: guestName.value,
-                message: guestMessage.value,
                 timestamp: serverTimestamp(),
             });
             guestName.value = '';
-            guestMessage.value = '';
         } catch (error) {
             console.error("Error writing message: ", error);
             alert('메시지를 남기는 중 오류가 발생했습니다.');
