@@ -24,14 +24,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // const interval = setInterval(countdown, 1000);
 
-    /* Firebase and Donation Logic */
-    const { ref, onValue, runTransaction, increment, database } = window.firebaseDB;
+    /* Firebase and Guestbook/Donation Logic */
+    const { ref, onValue, push, serverTimestamp, runTransaction, increment, database } = window.firebaseDB;
+    
+    // Guestbook
+    const guestbookRef = ref(database, 'guestbook');
+    const guestbookMessages = document.getElementById('guestbook-messages');
+    const guestName = document.getElementById('guest-name');
+    const guestMessage = document.getElementById('guest-message');
+    const submitButton = document.getElementById('submit-message');
+
+    // Donation
     const donationRef = ref(database, 'donations/totalAmount');
     const donationAmountDisplay = document.getElementById('donationAmountDisplay');
     const donationDoneDiv = document.querySelector('.donationDone');
 
-    // Check on page load if the user has already donated
-    if (localStorage.getItem('hasDonated')) {
+    // Check on page load if the user has already contributed
+    if (localStorage.getItem('hasContributed')) {
         donationDoneDiv.style.display = 'block';
     }
 
@@ -40,6 +49,61 @@ document.addEventListener('DOMContentLoaded', () => {
         const amount = snapshot.val() || 0;
         donationAmountDisplay.innerText = amount.toLocaleString();
     });
+
+    // Listen for new messages and display them
+    onValue(guestbookRef, (snapshot) => {
+        guestbookMessages.innerHTML = '';
+        snapshot.forEach((childSnapshot) => {
+            const message = childSnapshot.val();
+            const messageElement = document.createElement('p');
+            messageElement.innerText = `${message.name}: ${message.message}`;
+            guestbookMessages.appendChild(messageElement);
+        });
+    });
+
+    // Handle message submission and donation
+    const handleGuestbookSubmit = async () => {
+        if (guestName.value.trim() === '' || guestMessage.value.trim() === '') {
+            alert('이름과 메시지를 모두 입력해주세요.');
+            return;
+        }
+
+        const hasContributed = localStorage.getItem('hasContributed');
+
+        // Push message to guestbook first
+        try {
+            await push(guestbookRef, {
+                name: guestName.value,
+                message: guestMessage.value,
+                timestamp: serverTimestamp(),
+            });
+            guestName.value = '';
+            guestMessage.value = '';
+        } catch (error) {
+            console.error("Error writing message: ", error);
+            alert('메시지를 남기는 중 오류가 발생했습니다.');
+            return; // Stop if message fails
+        }
+
+        // Then handle donation if not already done
+        if (hasContributed) {
+            return;
+        }
+
+        try {
+            await runTransaction(donationRef, (currentData) => {
+                return (currentData || 0) + 1000;
+            });
+
+            localStorage.setItem('hasContributed', 'true');
+            donationDoneDiv.style.display = 'block';
+        } catch (error) {
+            console.error("Error processing donation: ", error);
+            alert('기부금을 업데이트하는 중 오류가 발생했습니다.');
+        }
+    };
+
+    submitButton.addEventListener('click', handleGuestbookSubmit);
 
     /* Petal Animation */
     const petalContainer = document.createElement('div');
@@ -99,43 +163,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const activeParticles = [];
 
     fab.addEventListener('click', () => {
-        // This is the new donation logic
-        handleDonation();
-
-        // This is the existing petal animation logic
-        const fabRect = fab.getBoundingClientRect();
-        for (let i = 0; i < 50; i++) {
-            createParticle(fabRect);
-        }
-        if (activeParticles.length > 0 && !animationRunning) {
-            requestAnimationFrame(runAnimation);
-        }
+        document.querySelector('.guestbook').scrollIntoView({ behavior: 'smooth' });
     });
-
-    // Donation handling function
-    const handleDonation = async () => {
-        if (localStorage.getItem('hasDonated')) {
-            // alert('이미 마음을 전해주셨습니다. 감사합니다!');
-            return;
-        }
-
-        try {
-            await runTransaction(donationRef, (currentData) => {
-                if (currentData === null) {
-                    return 1; // If it doesn't exist, initialize it
-                } else {
-                    return currentData + 1; // Otherwise, increment
-                }
-            });
-
-            localStorage.setItem('hasDonated', 'true');
-            donationDoneDiv.style.display = 'block';
-            // The onValue listener will automatically update the display
-        } catch (error) {
-            console.error("Error processing donation: ", error);
-            alert('오류가 발생했습니다. 다시 시도해주세요.');
-        }
-    };
 
     function createParticle(fabRect) {
         const element = document.createElement('div');

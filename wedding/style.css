@@ -250,3 +250,39 @@ footer {
 .fab:active {
   transform: scale(0.9);
 }
+
+/* Guestbook Section */
+.guestbook {
+    background-color: #ffffff;
+}
+
+#guestbook-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 500px;
+    margin: 0 auto 20px;
+}
+
+#guestbook-form input {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1em;
+}
+
+#guestbook-form button {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #a9cce3;
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+#guestbook-messages {
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: left;
+}

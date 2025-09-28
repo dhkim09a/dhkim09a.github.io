@@ -18,6 +18,8 @@
         getDatabase,
         ref,
         onValue,
+        push,
+        serverTimestamp,
         runTransaction,
         increment,
       } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
@@ -42,6 +44,8 @@
       window.firebaseDB = {
         ref,
         onValue,
+        push,
+        serverTimestamp,
         runTransaction,
         increment,
         database,
@@ -74,10 +78,9 @@
       <p>
         <b
           >2026. 1. 18 오전 11시 <br />
-          서울대학교 연구공원 웨딩홀</b
+          서울대학교 연구공원 웨딩홀*</b
         >
       </p>
-      <p>서울 관악구 관악로 1 연구공원 본관 1층*</p>
       <div class="map-buttons">
         <a
           href="https://naver.me/xgNS8Uf4"
@@ -133,11 +136,10 @@
       <br />
     </section>
 
-    <section class="donation">
+    <section class="guestbook">
       <h3>함께 나누는 축하의 마음</h3>
       <p>
-        오른쪽 아래 폭죽 <span>🎉</span>을 눌러 축하해 주세요. 축하해주신 분
-        마다 1,000 원 씩,
+        방명록에 메시지를 남겨주시면 축하해주신 분 마다 1,000 원 씩,
       </p>
       <p>지금까지 <span id="donationAmountDisplay"></span> 원이</p>
       <p>
@@ -152,11 +154,16 @@
           살아보겠습니다.
         </p>
       </div>
-      <br />
-      <p class="small-text">
-        * 폭죽 <span>🎉</span>을 여러 번 눌러도 한 번만 기부되지만, 대신 꽃잎이
-        예쁘게 쌓입니다 <span>😊</span>.
-      </p>
+    <!-- </section>
+
+    <section class="guestbook"> -->
+      <!-- <h3>축하의 마음을 전해주세요</h3> -->
+      <div id="guestbook-form">
+        <input type="text" id="guest-name" placeholder="이름" />
+        <input type="text" id="guest-message" placeholder="한 줄 메시지를 남겨주세요" />
+        <button id="submit-message">남기기</button>
+      </div>
+      <div id="guestbook-messages"></div>
     </section>
 
     <footer>
@@ -165,7 +172,7 @@
 
     <script src="script.js"></script>
     <script src="assets/album/image-list.js"></script>
-    <div id="fab" class="fab">🎉</div>
+    <div id="fab" class="fab">✏️</div>
 
     <div id="image-viewer" class="image-viewer">
       <span class="close-viewer">&times;</span>
