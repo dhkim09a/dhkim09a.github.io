@@ -77,8 +77,6 @@ section {
 .map-img {
   width: 100%;
   max-width: 500px;
-  border-radius: 8px; /* 이미지에 부드러운 곡률 추가 */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* 은은한 그림자 효과 */
 }
 
 .map-buttons {
