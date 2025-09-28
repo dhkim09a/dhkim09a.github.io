@@ -39,10 +39,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const donationAmountDisplay = document.getElementById('donationAmountDisplay');
     const donationDoneDiv = document.querySelector('.donationDone');
 
-    // Check on page load if the user has already contributed
-    if (localStorage.getItem('hasContributed')) {
-        donationDoneDiv.style.display = 'block';
-    }
+    // // Check on page load if the user has already contributed
+    // if (localStorage.getItem('hasContributed')) {
+    //     donationDoneDiv.style.display = 'block';
+    // }
 
     // Listen for changes in the donation amount and update the display
     onValue(donationRef, (snapshot) => {
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
         snapshot.forEach((childSnapshot) => {
             const message = childSnapshot.val();
             const messageElement = document.createElement('p');
-            messageElement.innerText = `${message.name}: ${message.message}`;
+            messageElement.innerText = `♥️ [${message.name}] ${message.message}`;
             guestbookMessages.appendChild(messageElement);
         });
     });
