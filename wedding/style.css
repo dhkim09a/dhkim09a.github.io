@@ -24,10 +24,18 @@ h3 {
   font-family: "Nanum Myeongjo", serif;
 }
 
-h3 {
+h2 {
   font-size: 1.8em;
-  margin-bottom: 25px;
+  margin-bottom: 40px;
   font-weight: 700;
+}
+
+h3 {
+  font-family: "Nanum Gothic", sans-serif;
+  font-size: 1em;
+  font-weight: bold;
+  color: #555;
+  /* margin-bottom: 5px; */
 }
 
 section {
@@ -102,6 +110,10 @@ section {
   color: #3c1e1e;
 }
 
+p {
+  margin: 40px auto;
+}
+
 p.small-text {
   font-size: 0.85em;
   color: #666;
@@ -116,8 +128,8 @@ p.small-text {
 .gallery-images {
   display: flex;
   overflow-x: auto;
-  gap: 15px;
-  padding: 15px 0;
+  gap: 25px;
+  padding: 40px 0;
 }
 
 .gallery-images img {
@@ -137,17 +149,9 @@ p.small-text {
 .parents-contacts {
   display: flex;
   flex-direction: row;
-  gap: 30px;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-.emph {
-  font-family: "Nanum Gothic", sans-serif;
-  font-size: 1em;
-  font-weight: bold;
-  color: #555;
-  margin-bottom: 5px;
+  /* gap: 60px; */
+  justify-content: space-evenly;
+  /* margin-top: 20px; */
 }
 
 /* 기부 섹션 */
