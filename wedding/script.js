@@ -100,11 +100,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             await runTransaction(donationRef, (currentData) => {
-                return (currentData || 0) + 1000;
+                return (currentData || 0) + 1;
             });
 
             localStorage.setItem('hasContributed', 'true');
-            donationDoneDiv.style.display = 'block';
+            // donationDoneDiv.style.display = 'block';
         } catch (error) {
             console.error("Error processing donation: ", error);
             alert('기부금을 업데이트하는 중 오류가 발생했습니다.');
