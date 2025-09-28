@@ -283,4 +283,21 @@ document.addEventListener('DOMContentLoaded', () => {
             imageViewer.style.display = 'none';
         }
     });
+
+    /* Account Info Toggle */
+    const accountToggles = document.querySelectorAll('.account-toggle');
+    accountToggles.forEach(toggle => {
+        toggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = toggle.dataset.target;
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+                if (targetElement.style.display === 'block') {
+                    targetElement.style.display = 'none';
+                } else {
+                    targetElement.style.display = 'block';
+                }
+            }
+        });
+    });
 });
