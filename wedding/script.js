@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return name[0] + '*'.repeat(name.length - 2) + name[name.length - 1];
         };
 
-        const namesHtml = names.map(name => `<span>♥️ ${obfuscateName(name)}</span>`).join('');
+        const namesHtml = names.reverse().map(name => `<span>♥️&nbsp;${obfuscateName(name)}</span>`).join('');
         guestbookMessages.innerHTML = `<p>${namesHtml}</p>`;
     });
 
